@@ -1,0 +1,114 @@
+
+
+
+{2: 'abc', 3: 'def', 4: 'ghi', 5: 'jkl', 6: 'mno',7:'pqrs',8:'tuv',9:'wxyz'}
+
+
+>>> [w[0:i]+w[i+1:len(w)] for i in range(len(w))]
+['bc', 'ac', 'ab']
+
+
+
+[[['cdb', 'dcb'], ['bdc', 'dbc'], ['bcd', 'cbd']], [['cda', 'dca'], ['adc', 'dac'], ['acd', 'cad']], [['bda', 'dba'], ['adb', 'dab'], ['abd', 'bad']],[['bca', 'cba'], ['acb', 'cab'], ['abc', 'bac']]]
+
+
+
+
+
+
+def display_combination(input):
+	if len(input) == 1: return [input]
+	if len(input) == 2: return  [input,input[::-1]]
+	else:	
+	    result = []
+		for i in range(len(input)):
+			for j in display_combination(input[0:i]+input[i+1:len(input)]):
+			    result.append(input[i]+j)
+	return result		
+
+
+
+#####################################
+
+
+
+
+{2: 'abc', 3: 'def', 4: 'ghi', 5: 'jkl', 6: 'mno',7:'pqrs',8:'tuv',9:'wxyz'}
+
+
+Sol1:
+
+class Solution(object):
+    def letterCombinations(self, digits):
+        """
+        :type digits: str
+        :rtype: List[str]
+        """
+        if not digits:
+            return []
+        m = ["abc", "def", "ghi", "jkl", "mno", "prqs", "tuv", "wxyz"] # 2..9
+        return reduce(lambda r,d: [p+l for p in r for l in m[ord(d)-ord('2')]], digits, [""])
+
+
+a=Solution()
+a.letterCombinations("243")       
+
+
+
+sol2:
+
+Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent.
+
+A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
+
+
+
+class Solution(object):
+    def letterCombinations(self, input):
+        """
+        :type digits: str
+        :rtype: List[str]
+        """
+        input=str(input)
+        mapping={'2': 'abc', '3': 'def', '4': 'ghi', '5': 'jkl', '6': 'mno','7':'pqrs','8':'tuv','9':'wxyz'} 
+        if len(input) == 1 : 
+			return [i for i in mapping.get(input,"")]
+        if len(input) == 2 : 
+		    return [i+j for j in self.letterCombinations(input[1]) for i in self.letterCombinations(input[0])]
+        if len(input) > 2:
+		    return sorted([ j+i for j in self.letterCombinations(input[:len(input)-2]) for i in self.letterCombinations(input[len(input)-2:len(input)])])   
+        else : return []
+
+
+
+class Solution(object):
+    def letterCombinations(self, input):
+	    mapping={'2': 'abc', '3': 'def', '4': 'ghi', '5': 'jkl', '6': 'mno','7':'pqrs','8':'tuv','9':'wxyz'} 
+		if len(input) == 1 : 
+			return [i for i in mapping.get(input,"")]
+		if len(input) > 1 : 
+		    return [i+j for j in self.letterCombinations(input[0]) for i in self.letterCombinations(input[1:])]
+		else:
+		    return []    
+
+
+		if len(input) > 3:
+		    return [ i+j for j in self.letterCombinations(input[:len(input)-2]) for i in self.letterCombinations(input[len(input)-2:len(input)])]   
+				
+					
+		    
+		
+		         		
+
+
+
+
+
+
+
+
+
+
+
+
+
