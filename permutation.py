@@ -34,4 +34,4 @@ class Solution(object):
 
 if __name__ == '__main__':
     obj = Solution()
-    print obj.permute([2,2,2])
+    print obj.permute([2,2,3])
