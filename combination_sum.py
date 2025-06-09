@@ -22,12 +22,7 @@ class Solution(object):
                 else:
                     rem = target - i 
                         
-                    
-        
-        
-        
-        
-        
+                
 
 if __name__ == '__main__':
     obj = Solution()
